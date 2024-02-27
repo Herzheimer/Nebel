@@ -23,11 +23,12 @@ namespace Nebel
         InitGraphics();
         import_texture(tex1, "../../../../assets/textures/checker.png");
         import_texture(sprite_tex1, "../../../../assets/textures/checker.png");
-        Transform2D t2 = {
-            {5.0f, 5.0f},
-            0.0f,
-            {8.0f, 8.0f}
-        };
+        
+        Transform2D t2 = Transform2D();
+        t2.position = {5.0f, 5.0f};
+        t2.rotation = 0.0f;
+        t2.scale    = {8.0f, 8.0f};
+
         im = UiImage();
         im.tex1 = tex1;
         bo = UiBox();

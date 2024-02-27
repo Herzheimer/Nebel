@@ -9,8 +9,8 @@ namespace Nebel
 {
     void run()
     {
-        std::cout << "hello" << std::endl;
         Game::Start();
+        //Game::physics = new PhysicsWorld2D();
         Game::platform->Create(1280, 720, "Hello World");
         Game::renderer->Init();
         //std::function<void()> somefunc = [](){std::cout << "surprise" << std::endl;};
@@ -41,18 +41,6 @@ namespace Nebel
             //if(Input::controller[0].isPressed(CONTROLLER_A))
             //{
             //    std::cout << "A is down" << std::endl;
-            //}
-            //if(Input::controller[0].isDown(CONTROLLER_B))
-            //{
-            //    std::cout << "B is down" << std::endl;
-            //}
-            //if(Input::controller[0].isDown(CONTROLLER_X))
-            //{
-            //    std::cout << "X is down" << std::endl;
-            //}
-            //if(Input::controller[0].isDown(CONTROLLER_L)||Input::controller[0].isDown(CONTROLLER_LB))
-            //{
-            //    std::cout << "The upper left button is down" << std::endl;
             //}
         }
         Game::Over();

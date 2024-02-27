@@ -1,14 +1,9 @@
 #pragma once
 
+#include "interfaces.h"
+
 namespace Nebel
 {
-    struct Renderer
-    {
-        void Init();
-        void Update();
-        void Resize();
-        ~Renderer();
-    };
     struct Renderer2D : Renderer
     {
         void Init();

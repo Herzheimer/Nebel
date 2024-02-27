@@ -4,13 +4,20 @@
 
 namespace Nebel
 {
-    struct Transform2D
+    struct Transform
+    {
+        //glm::vec3 position;
+        //glm::quat rotation;
+        //glm::vec3 scale;
+        //glm::vec3 rotation_euler;
+    };
+    struct Transform2D : Transform
     {
         glm::vec2 position;
         float rotation;
         glm::vec2 scale;
     };
-    struct Transform
+    struct Transform3D : Transform
     {
         glm::vec3 position;
         //glm::quat rotation;

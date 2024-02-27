@@ -18,12 +18,20 @@ namespace Nebel
     }
     void Game::Over()
     {
-        audio->DeInit();
+        if (networking != nullptr)
+        {
+            delete networking;
+        }
+        if (physics != nullptr)
+        {
+            delete physics;
+        }
         delete camera2d;
         delete camera;
         delete scheduler;
         delete components;
         delete resources;
+        audio->DeInit();
         delete audio;
         delete ui;
         renderer->~Renderer();

@@ -26,6 +26,7 @@ add_library(engine STATIC
     general/src/renderer2d.cpp
     general/src/renderer3d.cpp
     general/src/rng.cpp
+    #general/src/physics2d.cpp
     general/src/scheduler.cpp
     general/src/shader.cpp
     general/src/sprite.cpp
