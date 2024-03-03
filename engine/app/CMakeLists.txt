@@ -1,6 +1,7 @@
 project(App)
 
 set(AppSrc
+    src/nebel.cpp
     src/main.cpp
 )
 

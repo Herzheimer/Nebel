@@ -9,8 +9,8 @@ namespace Nebel
     {
         double timestep = 0;
         double accumulator = 0;
-        std::function<void()> action;
-        SchedulerTask(std::function<void()> &action, double interval);
+        std::function<void(float)> action;
+        SchedulerTask(std::function<void(float)> &action, double interval);
     };
     struct Scheduler
     {

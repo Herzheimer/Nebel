@@ -23,10 +23,5 @@ namespace Nebel
     void AudioEngine::play(Sound &sound)
     {
         ma_engine_play_sound(&maEngine, sound.path, NULL);
-        //ma_engine_node_set_volume(&maEngine, sound.volume);
-    }
-    void AudioEngine::stop(Sound &sound)
-    {
-        ma_engine_play_sound(&maEngine, sound.path, NULL);
     }
 }

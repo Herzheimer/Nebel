@@ -10,6 +10,7 @@ namespace Nebel
     {
         virtual void step(float delta_time) = 0;
         virtual void ResolveCollisions(float delta_time) = 0;
+        virtual void Synchronize_Transforms() = 0;
     };
     struct Renderer
     {
@@ -22,4 +23,8 @@ namespace Nebel
         void Resize();
         ~Renderer();
     };
+    //struct SceneSystem
+    //{
+    //    //
+    //};
 } // namespace Nebel   

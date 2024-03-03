@@ -6,8 +6,8 @@ namespace Nebel
     {
         running = true;
         resources = new Resources();
-        components = new Components();
         scheduler = new Scheduler();
+        scripting_system = new ScriptingSystem();
         platform = new Platform();
         renderer = new Renderer();
         ui = new UiSystem();
@@ -26,10 +26,17 @@ namespace Nebel
         {
             delete physics;
         }
+        if (ecs != nullptr)
+        {
+            delete ecs;
+        }
         delete camera2d;
         delete camera;
         delete scheduler;
-        delete components;
+        if (scripting_system != nullptr)
+        {
+            delete scripting_system;
+        }
         delete resources;
         audio->DeInit();
         delete audio;

@@ -22,10 +22,15 @@ namespace Nebel
     struct Camera2D
     {
         glm::mat4 projection;
+        glm::mat4 view;
         float near = -1000.1f;
         float far = 1000.0f;
         float rotation = 0;
         glm::vec2 position = glm::vec2(0.0f, 0.0f);
+        void update_projection();
+        void update_view();
         void update();
+        glm::vec3 front    = glm::vec3(0.0f, 0.0f, -1.0f);
+        glm::vec3 up       = glm::vec3(0.0f, 1.0f,  0.0f);
     };
 } // namespace Nebel

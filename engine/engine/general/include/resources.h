@@ -17,6 +17,6 @@ namespace Nebel
     struct Resources
     {
         std::map<uint64_t, Sprite> sprites;
-        std::map<uint16_t, ComponentContainer> custom_components;
+        //std::map<uint16_t, ComponentContainer> custom_components;
     };
 } // namespace Nebel

@@ -68,14 +68,24 @@ namespace Nebel
 
         SetBlendingMode(BlendingMode::BlendCutOff);
         glm::mat4 matrix = glm::mat4(1);
-        matrix = Game::camera2d->projection;
-        matrix = glm::translate(matrix,{sprite1pos,0});//glm::vec3(transform.position, 0.0f));
-        //matrix = glm::rotate(matrix, glm::radians(0), glm::vec3(0.f, 0.f, 1.f));
+        matrix = Game::camera2d->projection * Game::camera2d->view;
+        Transform2D et1r = Game::ecs->entities[0].transform2D;
+        sprite1pos = et1r.position;
+        matrix = glm::translate(matrix,{sprite1pos.x, sprite1pos.y,0});//glm::vec3(transform.position, 0.0f));
+        glm::vec3 spaxis = glm::vec3(0.0f, 0.0f, 1.0f);
+        matrix = glm::rotate(matrix, glm::radians(0.0f), spaxis);
         matrix = glm::scale(matrix, {1,1,1}); // glm::vec3(transform.scale, 1.0f));
         for (auto &&sprite : Game::resources->sprites)
         {
             Draw(matrix, sprite.second);
         }
+        matrix = Game::camera2d->projection * Game::camera2d->view;
+        Transform2D et2r = Game::ecs->entities[1].transform2D;
+        matrix = glm::translate(matrix,{et2r.position.x, et2r.position.y,0});//glm::vec3(transform.position, 0.0f));
+        matrix = glm::rotate(matrix, glm::radians(0.0f), spaxis);
+        matrix = glm::scale(matrix, glm::vec3(et2r.scale, 0)); // glm::vec3(transform.scale, 1.0f));
+        glm::vec4 col2 = {1,1,1,1};
+        DrawRect(matrix, col2);
         
         //sprite1pos.x+=1;
         Game::ui->render();

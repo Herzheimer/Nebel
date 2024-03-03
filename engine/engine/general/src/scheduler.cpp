@@ -3,7 +3,7 @@
 
 namespace Nebel
 {
-    SchedulerTask::SchedulerTask(std::function<void()> &action, double interval) : action(action), timestep(1/interval)
+    SchedulerTask::SchedulerTask(std::function<void(float)> &action, double interval) : action(action), timestep(1/interval)
     {
         //
     }
@@ -42,7 +42,7 @@ namespace Nebel
             tasks[i]->accumulator += deltaTime;
             if (tasks[i]->accumulator >= tasks[i]->timestep) //TODO
             {
-                tasks[i]->action();
+                tasks[i]->action(deltaTime);
                 tasks[i]->accumulator -= tasks[i]->timestep;
             }
         }

@@ -9,10 +9,12 @@
 #include "platform.h"
 #include "renderer.h"
 #include "scheduler.h"
+//#include "script.h"
 #include "sprite.h"
 #include "ui.h"
 #include "audio.h"
 #include "resources.h"
+#include "scripting_system.h"
 
 namespace Nebel
 {
@@ -28,10 +30,9 @@ namespace Nebel
         inline static Renderer* renderer;
         inline static Resources* resources;
         inline static Scheduler* scheduler;
+        inline static ScriptingSystem* scripting_system;
+        inline static ECS* ecs = nullptr;
         inline static UiSystem* ui;
-        inline static std::map<uint64_t, Entity> entities;
-        inline static Components* components;
-        inline static std::map<const char*, Scene> scenes;
 
         static void Load(const char* path);
         static void Start();

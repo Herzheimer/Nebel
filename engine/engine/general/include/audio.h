@@ -18,6 +18,5 @@ namespace Nebel
         void Init();
         void DeInit();
         void play(Sound &sound);
-        void stop(Sound &sound);
     };
 } // namespace Nebel

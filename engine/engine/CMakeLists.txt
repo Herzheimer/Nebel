@@ -16,6 +16,7 @@ add_library(engine STATIC
     general/src/audio.cpp
     general/src/camera.cpp
     general/src/controller.cpp
+    general/src/ecs.cpp
     general/src/game.cpp
     general/src/graphics.cpp
     general/src/importer.cpp
@@ -26,12 +27,13 @@ add_library(engine STATIC
     general/src/renderer2d.cpp
     general/src/renderer3d.cpp
     general/src/rng.cpp
-    #general/src/physics2d.cpp
+    general/src/physics2d.cpp
     general/src/scheduler.cpp
+    general/src/scripting_system.cpp
     general/src/shader.cpp
     general/src/sprite.cpp
     general/src/texture.cpp
-    general/src/nebel.cpp
+    #general/src/nebel.cpp
     general/src/ui.cpp
 )
 target_include_directories(engine PUBLIC
