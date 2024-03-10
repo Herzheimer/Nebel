@@ -8,7 +8,6 @@
 #include "scripting_system.h"
 #include "script.h"
 #include "Scripts.h"
-#include "geometric_primitives.h"
 
 namespace Nebel
 {
@@ -22,7 +21,7 @@ namespace Nebel
         Game::camera2d->update();
         PhysicsWorld2D pw2d = PhysicsWorld2D();
         ImpulseSolver2D impulse_solver = ImpulseSolver2D();
-        pw2d.solvers.push_back(&impulse_solver);
+        //pw2d.solvers.push_back(&impulse_solver);
         PositionSolver2D position_solver = PositionSolver2D();
         pw2d.solvers.push_back(&position_solver);
         Game::physics = &pw2d;
@@ -111,7 +110,7 @@ namespace Nebel
         Game::ecs->components.physics_components[ent2.id].object=&ph2;
         Game::ecs->components.rects[ent2.id] = {};
         Game::ecs->components.rects[ent2.id].entity = &Game::ecs->entities[ent2.id];
-        Game::ecs->components.rects[ent2.id].color={0.7f, 0.9f, 1.0f, 1.0f};
+        Game::ecs->components.rects[ent2.id].color={.7,.9,1,1};
         
         Entity ent3 = Entity();
         ent3.id = 2;
@@ -144,7 +143,7 @@ namespace Nebel
         Game::ecs->components.rects[ent3.id].color={1,1,1,1};
 
         //add_Script<TestScript>(&ent1);
-        add_Script<PlayerScript2D>(&ent1);
+        add_Script<PlayerScript>(&ent1);
 
         while (!Game::platform->ShouldClose())
         {

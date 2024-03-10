@@ -18,7 +18,7 @@ namespace Nebel
     void SetBlendingMode(BlendingMode mode);
     void ClearColor(float color);
     void Draw(Mesh &mesh);
-    void Draw(glm::mat4 &matrix, Sprite &sprite);
+    void Draw(glm::mat4 &matrix, Sprite* sprite);
     void DrawRect(Transform2D &transform, glm::vec4 &color);
     void DrawRect(Transform2D &transform, glm::vec4 &color, glm::mat4 &proj);
     void DrawRect(glm::mat4 &matrix, glm::vec4 &color);

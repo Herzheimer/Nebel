@@ -4,12 +4,11 @@
 
 namespace Nebel
 {
-    struct PlayerScript2D : Script
+    struct PlayerScript : Script
     {
         float speed = 2000;
         PhysicObject2D* physics_thing;
         glm::vec2 move_vec = {0, 0};
-
         void onCreate() override
         {
             physics_thing = Game::ecs->components.physics_components[entity->id].object;

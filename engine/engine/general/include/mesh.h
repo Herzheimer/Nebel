@@ -3,6 +3,9 @@
 #include <cstdint>
 #include <vector>
 #include "Vertex.h"
+//#include <assimp/cimport.h>
+//#include <assimp/scene.h>
+//#include <assimp/postprocess.h>
 
 namespace Nebel
 {

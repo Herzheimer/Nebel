@@ -21,17 +21,43 @@ namespace Nebel
     {
         ClearColor(0.5f);
         Game::camera->update(0.03f);
-        glm::mat4 vp = Game::camera->projection * Game::camera->view;
-        //glm::translate(modelmat, {3,0,0});
-        //glm::mat4 mvp = vp*modelmat;
+        vp = Game::camera->projection * Game::camera->view;
+        glm::mat4 mvp = vp;
+        for (auto &&model : Game::ecs->components.static_models)
+        {
+            mvp = vp;
+            Transform trans = Game::ecs->entities[model.first].transform;
+            mvp = glm::translate(mvp, trans.position);
+            //mvp = glm::rotate(mvp, trans.rotation);
+            mvp = glm::scale(mvp, trans.scale);
+            model.second.model->draw();
+        }
+        for (auto &&model : Game::ecs->components.models)
+        {
+            mvp = vp;
+            Transform trans = Game::ecs->entities[model.first].transform;
+            mvp = glm::translate(mvp, trans.position);
+            //mvp = glm::rotate(mvp, trans.rotation);
+            mvp = glm::scale(mvp, trans.scale);
+            model.second.model->draw();
+        }
+        //for (auto &&sprite : Game::ecs->components.sprites)
+        //{
+        //    mvp = vp;
+        //    Transform trans = Game::ecs->entities[sprite.first].transform;
+        //    mvp = glm::translate(mvp, trans.position);
+        //    //mvp = glm::rotate(mvp, trans.rotation);
+        //    mvp = glm::scale(mvp, trans.scale);
+        //    Draw(mvp, sprite.second.sprite);
+        //}
+        Game::ui->render();
     }
     void Renderer3D::Resize()
     {
-        //GraphicsDevice::SetViewport(Game::platform->width, Game::platform->height);
         SetViewport(Game::platform->width, Game::platform->height);
         //gbuffer.exit();
     }
-    Renderer3D::~Renderer3D()
+    void Renderer3D::End()
     {
         EndGraphics();
     }

@@ -1,14 +1,15 @@
-project(App)
+project(Desktop_App)
 
-set(AppSrc
+set(DeskAppSrc
+    src/nebel.cpp
     src/main.cpp
 )
 
-add_executable(app ${AppSrc})
+add_executable(Desktop_App ${DeskAppSrc})
 
-target_include_directories(app PUBLIC
+target_include_directories(Desktop_App PUBLIC
     include
 )
-target_link_libraries(app PRIVATE
+target_link_libraries(Desktop_App PRIVATE
     engine
 )

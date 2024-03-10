@@ -18,12 +18,12 @@ add_library(engine STATIC
     general/src/controller.cpp
     general/src/ecs.cpp
     general/src/game.cpp
+    #general/src/geometric_primitives.cpp
     general/src/graphics.cpp
     general/src/importer.cpp
     general/src/input.cpp
     general/src/loader.cpp
     general/src/mesh.cpp
-    general/src/renderer.cpp
     general/src/renderer2d.cpp
     general/src/renderer3d.cpp
     general/src/rng.cpp
@@ -33,7 +33,6 @@ add_library(engine STATIC
     general/src/shader.cpp
     general/src/sprite.cpp
     general/src/texture.cpp
-    #general/src/nebel.cpp
     general/src/ui.cpp
 )
 target_include_directories(engine PUBLIC

@@ -45,9 +45,9 @@ namespace Nebel
         Game::scripting_system->scripts[entity->id].onDestroy();
         // TODO
         delete Game::scripting_system->scripts[entity->id].script;
-        Game::scripting_system->scripts[entity->id].script = nullptr;
         Game::scripting_system->scripts[entity->id].script->entity;//TODO: remove script on the entity's end
         Game::scripting_system->scripts[entity->id].script->entity = nullptr;
+        Game::scripting_system->scripts[entity->id].script = nullptr;
         Game::scripting_system->scripts[entity->id]; // TODO
         Game::scripting_system->scripts.erase(entity->id);
     }

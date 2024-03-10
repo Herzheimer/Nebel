@@ -15,7 +15,7 @@ namespace Nebel
     {
         Entity* parent = nullptr;
         uint64_t id;
-        //Transform* transform; // and 2D??
+        Transform transform; // and 2D??
         Transform2D transform2D;
         std::vector<uint16_t> component_types;
         void Serialize();

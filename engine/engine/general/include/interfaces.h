@@ -14,14 +14,14 @@ namespace Nebel
     };
     struct Renderer
     {
-        // virtual void Init() = 0;
-        // virtual void Update() = 0;
-        // virtual void Resize() = 0;
-        // virtual ~Renderer() = 0;
-        void Init();
-        void Update();
-        void Resize();
-        ~Renderer();
+        virtual void Init() = 0;
+        virtual void Update() = 0;
+        virtual void Resize() = 0;
+        virtual void End() = 0;
+        //void Init();
+        //void Update();
+        //void Resize();
+        //~Renderer();
     };
     //struct SceneSystem
     //{

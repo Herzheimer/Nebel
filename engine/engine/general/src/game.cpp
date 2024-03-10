@@ -9,7 +9,7 @@ namespace Nebel
         scheduler = new Scheduler();
         scripting_system = new ScriptingSystem();
         platform = new Platform();
-        renderer = new Renderer();
+        renderer = new Renderer2D();// = new Renderer3D();
         ui = new UiSystem();
         audio = new AudioEngine();
         camera = new Camera();
@@ -41,8 +41,11 @@ namespace Nebel
         audio->DeInit();
         delete audio;
         delete ui;
-        renderer->~Renderer();
-        delete renderer;
+        if(renderer != nullptr)
+        {
+            renderer->End();
+            delete renderer;
+        }
         platform->~Platform();
         delete platform;
     }

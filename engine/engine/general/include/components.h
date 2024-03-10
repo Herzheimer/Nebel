@@ -28,8 +28,17 @@ namespace Nebel
     };
     struct RectComponent : IComponent
     {
-        uint64_t id;
-        glm::vec3 color = {0.2,0.2,0.2};
+        glm::vec4 color = {0.2, 0.2, 0.2, 1.0};
+    };
+    struct ModelComponent : IComponent
+    {
+        uint64_t res_id;
+        Model* model;
+    };
+    struct StaticModelComponent : IComponent
+    {
+        uint64_t res_id;
+        StaticModel* model;
     };
     struct SpriteComponent : IComponent
     {
@@ -52,6 +61,8 @@ namespace Nebel
     };
     struct Components
     {
+        std::map<uint64_t, StaticModelComponent> static_models;
+        std::map<uint64_t, ModelComponent> models;
         std::map<uint64_t, SpriteComponent> sprites;
         std::map<uint64_t, RectComponent> rects;
         std::map<uint64_t, Transform2DComponent> transform2d;

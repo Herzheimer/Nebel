@@ -93,88 +93,22 @@ namespace Nebel
             std::cout << "Failed to parse glTF" << std::endl;
             return;
         }
-        for (size_t meshes_i = 0; meshes_i < tinygltf_model.meshes.size(); meshes_i++)
+        for (size_t iNode = 0; iNode < tinygltf_model.nodes.size(); iNode++)
         {
-            tinygltf::Mesh tiny_mesh = tinygltf_model.meshes[meshes_i];
-            Nebel::Mesh mesh;
-            MeshHelper meshHelper;
-            for (size_t prim_i = 0; prim_i < tiny_mesh.primitives.size(); prim_i++)
+            tinygltf::Node tiny_node = tinygltf_model.nodes[iNode];
+            tinygltf::Mesh tinymesh= tinygltf_model.meshes[tiny_node.mesh];
+            tinygltf::Skin tinyskin = tinygltf_model.skins[tiny_node.skin];
+            
+            Nebel::Mesh mesh();
+
+            for (size_t iPrimitive = 0; iPrimitive < tinymesh.primitives.size(); iPrimitive++)
             {
-                tinygltf::Primitive primitive = tiny_mesh.primitives[prim_i];
-                tinygltf::Accessor tiny_index_accessor = tinygltf_model.accessors[primitive.indices];
-                tinygltf::BufferView tiny_index_bufferview = tinygltf_model.bufferViews[tiny_index_accessor.bufferView];
-                tinygltf::Buffer tiny_index_buffer = tinygltf_model.buffers[tiny_index_bufferview.buffer];
-                if(tiny_index_accessor.componentType==TINYGLTF_COMPONENT_TYPE_UNSIGNED_BYTE)
-                {
-                    const uint8_t* indices_data = reinterpret_cast<const uint8_t*>(&tiny_index_buffer.data[tiny_index_bufferview.byteOffset + tiny_index_accessor.byteOffset]);
-                    for (size_t ib_i = 0; ib_i < tiny_index_accessor.count; ib_i++)
-                    {
-                        meshHelper.indices.push_back(indices_data[ib_i]);
-                    }
-                } else if(tiny_index_accessor.componentType==TINYGLTF_COMPONENT_TYPE_UNSIGNED_SHORT)
-                {
-                    const uint16_t* indices_data = reinterpret_cast<const uint16_t*>(&tiny_index_buffer.data[tiny_index_bufferview.byteOffset + tiny_index_accessor.byteOffset]);
-                    for (size_t ib_i = 0; ib_i < tiny_index_accessor.count; ib_i++)
-                    {
-                        //uint32_t uint32_v = indices_data[ib_i]; // TODO?????
-                        meshHelper.indices.push_back(indices_data[ib_i]); //uint32_v);
-                    }
-                } else if(tiny_index_accessor.componentType==TINYGLTF_COMPONENT_TYPE_UNSIGNED_INT)
-                {
-                    const uint32_t* indices_data = reinterpret_cast<const uint32_t*>(&tiny_index_buffer.data[tiny_index_bufferview.byteOffset + tiny_index_accessor.byteOffset]);
-                    for (size_t ib_i = 0; ib_i < tiny_index_accessor.count; ib_i++)
-                    {
-                        meshHelper.indices.push_back(indices_data[ib_i]);
-                    }
-                }else{
-                    std::cout << "indices of unhandled type" << std::endl;
-                }
-                mesh.materialID = primitive.material;
-                for (auto acc_indes : primitive.attributes)
-                {
-                    tinygltf::Accessor accessor = tinygltf_model.accessors[acc_indes.second];
-                    tinygltf::BufferView bufferview = tinygltf_model.bufferViews[accessor.bufferView];
-                    tinygltf::Buffer buffer = tinygltf_model.buffers[bufferview.buffer];
-                    VertexAttribute attribute;
-                    if(acc_indes.first == "POSITION")
-                    {
-                        attribute.name = "Position";
-                        attribute.offset = 0;
-                        attribute.stride = sizeof(glm::vec3);
-                        attribute.num_components = 3;
-                        attribute.isNormalized = false;
-                        const char* buf = new char[accessor.count]();
-                        buf = reinterpret_cast<const char*>(&buffer.data[bufferview.byteOffset + accessor.byteOffset]);
-                        for (size_t push_i = 0; push_i < accessor.count; push_i++)
-                        {
-                            meshHelper.positions.push_back(buf[push_i]);
-                        }
-                        meshHelper.attributes.push_back(attribute);
-                        //std::cout << bufferview.byteStride << std::endl;
-                        //std::cout << accessor.ByteStride(bufferview) << std::endl;
-                        //std::cout << accessor.type << std::endl;
-                        //std::cout << accessor.count << std::endl;
-                    }
-                    if(acc_indes.first == "Normal")
-                    {
-                        attribute.name = "Normal";
-                        attribute.offset = 0;
-                        attribute.stride = sizeof(glm::vec3);
-                        attribute.num_components = 3;
-                        attribute.isNormalized = false;
-                    }
-                    if(acc_indes.first == "TEXCOORD_0")
-                    {
-                        attribute.name = "Tex0";
-                        attribute.offset = 0;
-                        attribute.stride = sizeof(glm::vec2);
-                        attribute.num_components = 2;
-                        attribute.isNormalized = false;
-                    }
-                }
+                tinygltf::Primitive tiny_primitive = tinymesh.primitives[0]; // Todo
+                tiny_primitive.indices;
+                tiny_primitive.attributes;
+                tiny_primitive.material;
             }
-            mesh.create(meshHelper.positions.data(), meshHelper.indices.data(), 24, 36);
-            model.meshes.push_back(mesh);
         }
+        
     }
 } // namespace Nebel

@@ -53,15 +53,15 @@ namespace Nebel
     {
         //
     }
-    void Draw(glm::mat4 &matrix, Sprite &sprite)
+    void Draw(glm::mat4 &matrix, Sprite* sprite)
     {
         float vertices[] = {
-            -sprite.dimensions.x, -sprite.dimensions.y, 0.0f, // left  
-             sprite.dimensions.x, -sprite.dimensions.y, 0.0f, // right 
-             sprite.dimensions.x,  sprite.dimensions.y, 0.0f, // top
-            -sprite.dimensions.x,  sprite.dimensions.y, 0.0f, // top-left
-            -sprite.dimensions.x, -sprite.dimensions.y, 0.0f, // bottom-left
-             sprite.dimensions.x,  sprite.dimensions.y, 0.0f, // top-right
+            -sprite->dimensions.x, -sprite->dimensions.y, 0.0f, // left  
+             sprite->dimensions.x, -sprite->dimensions.y, 0.0f, // right 
+             sprite->dimensions.x,  sprite->dimensions.y, 0.0f, // top
+            -sprite->dimensions.x,  sprite->dimensions.y, 0.0f, // top-left
+            -sprite->dimensions.x, -sprite->dimensions.y, 0.0f, // bottom-left
+             sprite->dimensions.x,  sprite->dimensions.y, 0.0f, // top-right
             0.0f, 0.0f,                                                                                // left  
             1.0f, 0.0f,                                                                                // right 
             1.0f, 1.0f,                                                                                // top
@@ -84,9 +84,9 @@ namespace Nebel
 
         SpriteShader.use();
         SpriteShader.setMat4("mvp", matrix);
-        SpriteShader.setVec2("row_column_indices", sprite.row_column_indices);
-        SpriteShader.setVec2("row_column_count", sprite.row_column_count);
-        sprite.tex->use(0);
+        SpriteShader.setVec2("row_column_indices", sprite->row_column_indices);
+        SpriteShader.setVec2("row_column_count", sprite->row_column_count);
+        sprite->tex->use(0);
         glDrawArrays(GL_TRIANGLES, 0, 6);
 
         glBindBuffer(GL_ARRAY_BUFFER, 0); 
